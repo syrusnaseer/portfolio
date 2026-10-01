@@ -24,12 +24,10 @@ export function initAnimations() {
 
 function heroEntrance() {
   // Name reveal — clip-path wipe from bottom
-  gsap.from('.hero-name-inner', {
-    clipPath: 'inset(100% 0 0 0)',
-    duration: 1,
-    ease: 'power4.out',
-    delay: 0.2,
-  });
+  gsap.fromTo('.hero-name-inner',
+    { clipPath: 'inset(100% 0 0 0)' },
+    { clipPath: 'inset(0% 0 0 0)', duration: 1, ease: 'power4.out', delay: 0.2 }
+  );
 
   // Subtitle, bio, cta, social stagger
   gsap.from(

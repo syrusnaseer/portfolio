@@ -85,10 +85,10 @@
   overflow: hidden;
 }
 
-/* Inner span that GSAP targets with clip-path */
+/* Inner span that GSAP targets with clip-path — no default hide so name shows without JS */
 .hero-name-inner {
   display: block;
-  clip-path: inset(100% 0 0 0);
+  /* clip-path managed by GSAP — no default hide */
 }
 
 /* ── Typewriter element ───────────────────────────────────── */
