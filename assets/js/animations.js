@@ -81,124 +81,172 @@ function statsAnimations() {
 // ── 3. About ──────────────────────────────────────────────────────────────────
 
 function aboutAnimations() {
-  gsap.from('.about-text', {
-    x: -40,
-    opacity: 0,
-    duration: 0.8,
-    scrollTrigger: {
-      trigger: '#about',
-      start: 'top 75%',
-    },
-  });
+  // Section prefix number slides up
+  gsap.fromTo('#about .section-prefix',
+    { y: 30, opacity: 0 },
+    {
+      y: 0, opacity: 1, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '#about', start: 'top 80%' },
+    }
+  );
 
-  // Timeline items stagger (::before pseudo can't be targeted directly by GSAP)
-  gsap.from('.timeline-item', {
-    opacity: 0,
-    x: 20,
-    duration: 0.6,
-    stagger: 0.2,
-    scrollTrigger: {
-      trigger: '.timeline',
-      start: 'top 80%',
-    },
-  });
+  // Heading clip-path wipe up — matches project heading style
+  gsap.fromTo('#about .section-title',
+    { clipPath: 'inset(100% 0 0 0)', y: 20 },
+    {
+      clipPath: 'inset(0% 0 0 0)', y: 0, duration: 0.9, ease: 'power4.out',
+      scrollTrigger: { trigger: '#about', start: 'top 78%' },
+    }
+  );
+
+  gsap.fromTo('.about-text',
+    { x: -40, opacity: 0 },
+    {
+      x: 0, opacity: 1, duration: 0.8, ease: 'power2.out',
+      scrollTrigger: { trigger: '#about', start: 'top 72%' },
+    }
+  );
+
+  gsap.fromTo('.timeline-item',
+    { opacity: 0, x: 20 },
+    {
+      opacity: 1, x: 0, duration: 0.6, stagger: 0.2, ease: 'power2.out',
+      scrollTrigger: { trigger: '.timeline', start: 'top 80%' },
+    }
+  );
 }
 
 // ── 4. Skills ─────────────────────────────────────────────────────────────────
 
 function skillsAnimations() {
-  gsap.from('.skill-label', {
-    x: -40,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.08,
-    scrollTrigger: {
-      trigger: '#skills',
-      start: 'top 75%',
-    },
-  });
+  // Section prefix
+  gsap.fromTo('#skills .section-prefix',
+    { y: 30, opacity: 0 },
+    {
+      y: 0, opacity: 1, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '#skills', start: 'top 80%' },
+    }
+  );
 
-  gsap.from('.chip', {
-    opacity: 0,
-    y: 10,
-    duration: 0.4,
-    stagger: { each: 0.05, from: 'start' },
-    scrollTrigger: {
-      trigger: '#skills',
-      start: 'top 65%',
-    },
-  });
+  // Heading clip-path wipe up
+  gsap.fromTo('#skills .section-title',
+    { clipPath: 'inset(100% 0 0 0)', y: 20 },
+    {
+      clipPath: 'inset(0% 0 0 0)', y: 0, duration: 0.9, ease: 'power4.out',
+      scrollTrigger: { trigger: '#skills', start: 'top 78%' },
+    }
+  );
+
+  gsap.fromTo('.skill-label',
+    { x: -40, opacity: 0 },
+    {
+      x: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power2.out',
+      scrollTrigger: { trigger: '#skills', start: 'top 72%' },
+    }
+  );
+
+  gsap.fromTo('.chip',
+    { opacity: 0, y: 12 },
+    {
+      opacity: 1, y: 0, duration: 0.4, stagger: { each: 0.05, from: 'start' }, ease: 'power2.out',
+      scrollTrigger: { trigger: '#skills', start: 'top 65%' },
+    }
+  );
 }
 
 // ── 5. Projects ───────────────────────────────────────────────────────────────
 
 function projectsAnimations() {
-  // Title parallax scrub
-  gsap.from('.section-title.projects-title', {
-    x: '15vw',
-    duration: 1,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#projects',
-      start: 'top bottom',
-      end: 'top 30%',
-      scrub: 1,
-    },
-  });
+  // Section prefix
+  gsap.fromTo('#projects .section-prefix',
+    { y: 30, opacity: 0 },
+    {
+      y: 0, opacity: 1, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '#projects', start: 'top 80%' },
+    }
+  );
+
+  // Heading clip-path wipe — scrubs in as section enters
+  gsap.fromTo('#projects .section-title',
+    { clipPath: 'inset(100% 0 0 0)', x: '8vw' },
+    {
+      clipPath: 'inset(0% 0 0 0)', x: 0, duration: 1, ease: 'power4.out',
+      scrollTrigger: { trigger: '#projects', start: 'top 78%' },
+    }
+  );
+
+  // Filter pills
+  gsap.fromTo('.filter-btn',
+    { opacity: 0, y: 10 },
+    {
+      opacity: 1, y: 0, duration: 0.4, stagger: 0.07, ease: 'power2.out',
+      scrollTrigger: { trigger: '.projects-filters', start: 'top 88%' },
+    }
+  );
 
   // Cards fade up
-  gsap.from('.project-card', {
-    opacity: 0,
-    y: 60,
-    scale: 0.95,
-    duration: 0.7,
-    stagger: 0.1,
-    scrollTrigger: {
-      trigger: '.projects-grid',
-      start: 'top 85%',
-    },
-  });
+  gsap.fromTo('.project-card',
+    { opacity: 0, y: 60, scale: 0.95 },
+    {
+      opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.1, ease: 'power2.out',
+      scrollTrigger: { trigger: '.projects-grid', start: 'top 85%' },
+    }
+  );
 }
 
 // ── 6. Contact ────────────────────────────────────────────────────────────────
 
 function contactAnimations() {
-  gsap.from('.contact-grid > *', {
-    opacity: 0,
-    y: 30,
-    duration: 0.8,
-    stagger: 0.15,
-    scrollTrigger: {
-      trigger: '#contact',
-      start: 'top 80%',
-    },
-  });
+  // Section prefix
+  gsap.fromTo('#contact .section-prefix',
+    { y: 30, opacity: 0 },
+    {
+      y: 0, opacity: 1, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '#contact', start: 'top 82%' },
+    }
+  );
 
-  gsap.from('#contact .section-title', {
-    opacity: 0,
-    y: 20,
-    duration: 0.6,
-    scrollTrigger: {
-      trigger: '#contact',
-      start: 'top 85%',
-    },
-  });
+  // Heading clip-path wipe up
+  gsap.fromTo('#contact .section-title',
+    { clipPath: 'inset(100% 0 0 0)', y: 20 },
+    {
+      clipPath: 'inset(0% 0 0 0)', y: 0, duration: 0.9, ease: 'power4.out',
+      scrollTrigger: { trigger: '#contact', start: 'top 80%' },
+    }
+  );
+
+  // Contact info items — each one individually so icons never disappear
+  gsap.fromTo('.contact-info-item',
+    { opacity: 0, x: -20 },
+    {
+      opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out',
+      scrollTrigger: { trigger: '.contact-info', start: 'top 85%' },
+    }
+  );
+
+  // Form fields stagger up
+  gsap.fromTo('.form-group',
+    { opacity: 0, y: 25 },
+    {
+      opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out',
+      scrollTrigger: { trigger: '.contact-form', start: 'top 85%' },
+    }
+  );
+
+  // Submit button
+  gsap.fromTo('.btn-submit',
+    { opacity: 0, y: 15 },
+    {
+      opacity: 1, y: 0, duration: 0.5, ease: 'power2.out',
+      scrollTrigger: { trigger: '.contact-form', start: 'top 75%' },
+    }
+  );
 }
 
 // ── 7. Universal section headings ─────────────────────────────────────────────
 
 function sectionHeadings() {
-  gsap.utils.toArray('.section-title').forEach((el) => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 20,
-      duration: 0.6,
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-      },
-    });
-  });
+  // Already handled per-section above with clip-path reveals — skip to avoid double animation
 }
 
 // ── 8. Footer ─────────────────────────────────────────────────────────────────

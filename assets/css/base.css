@@ -122,6 +122,8 @@ section {
   text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 1;
+  overflow: hidden;         /* clip-path wipe needs this */
+  display: block;
 }
 
 /* ── Selection colour ─────────────────────────────────────── */

@@ -22,7 +22,7 @@
   --font-mono:    'JetBrains Mono', monospace;
 
   /* ── Typography — fluid scale ─────────────────────────── */
-  --text-display: clamp(4rem, 12vw, 11rem);
+  --text-display: clamp(3rem, 8vw, 7rem);
   --text-h2:      clamp(2rem, 5vw, 4rem);
   --text-h3:      1.5rem;
   --text-body:    1rem;
