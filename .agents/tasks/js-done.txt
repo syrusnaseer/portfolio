@@ -1,0 +1,29 @@
+JS files verification — all 9 files created
+============================================
+
+Files under assets/js/:
+  animations.js   5360 bytes   exports: initAnimations()
+  clock.js         538 bytes   exports: initClock()
+  contact.js      5526 bytes   exports: initContact()
+  counter.js       871 bytes   exports: initCounters()
+  hero.js         2947 bytes   exports: initHero()
+  main.js         1747 bytes   (entry point — no exports)
+  nav.js          6074 bytes   exports: initNav(), setLenis()
+  projects.js     5719 bytes   exports: initProjects()
+  typed-init.js    589 bytes   exports: initTyped()
+
+Import/export alignment check:
+  main.js imports  initClock        ← clock.js exports       initClock()       ✓
+  main.js imports  initTyped        ← typed-init.js exports  initTyped()       ✓
+  main.js imports  initHero         ← hero.js exports        initHero()        ✓
+  main.js imports  initCounters     ← counter.js exports     initCounters()    ✓
+  main.js imports  initProjects     ← projects.js exports    initProjects()    ✓
+  main.js imports  initContact      ← contact.js exports     initContact()     ✓
+  main.js imports  initNav, setLenis← nav.js exports         initNav(), setLenis() ✓
+  main.js imports  initAnimations   ← animations.js exports  initAnimations()  ✓
+
+Issues / notes:
+  - contact.js: EMAILJS_SERVICE_ID / EMAILJS_TEMPLATE_ID / EMAILJS_PUBLIC_KEY are
+    placeholder strings. User must replace them with real EmailJS credentials before
+    the contact form will actually send email.
+  - All files are complete — no TODOs or stubs.
