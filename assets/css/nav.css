@@ -1,0 +1,195 @@
+/* =========================================================
+   nav.css — Syrus Portfolio
+   Fixed navigation bar, mobile overlay, scroll progress
+   ========================================================= */
+
+/* ── Main nav bar ─────────────────────────────────────────── */
+nav#main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 1000;
+  padding: 0 max(var(--frame-inset), 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background var(--transition-med), border-color var(--transition-fast);
+}
+
+/* Scrolled state — frosted glass */
+nav#main-nav.nav-scrolled {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(8, 8, 8, 0.85);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ── Logo ─────────────────────────────────────────────────── */
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--color-white);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+/* ── Desktop nav links list ───────────────────────────────── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+/* ── Individual nav link ──────────────────────────────────── */
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-grey-hi);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color var(--transition-fast);
+}
+
+/* Active dot indicator below link */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--color-white);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.nav-link.active {
+  color: var(--color-white);
+}
+
+.nav-link.active::after {
+  opacity: 1;
+}
+
+.nav-link:hover {
+  color: var(--color-white);
+}
+
+/* ── Resume CTA button ────────────────────────────────────── */
+.nav-resume {
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
+  background: transparent;
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  letter-spacing: 0.02em;
+}
+
+.nav-resume:hover {
+  background: var(--color-white);
+  color: var(--color-bg);
+}
+
+/* ── Hamburger button (mobile only) ───────────────────────── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--color-white);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+/* Hamburger → X animation */
+.nav-hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(4.7px) translateX(4.7px);
+}
+
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-4.7px) translateX(4.7px);
+}
+
+/* ── Mobile fullscreen overlay ────────────────────────────── */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.nav-overlay.open {
+  transform: translateX(0);
+}
+
+/* Overlay links — large editorial type */
+.nav-overlay-link {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--color-white);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease;
+}
+
+.nav-overlay.open .nav-overlay-link {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Staggered entrance for overlay links */
+.nav-overlay.open .nav-overlay-link:nth-child(1) { transition-delay: 0.05s; }
+.nav-overlay.open .nav-overlay-link:nth-child(2) { transition-delay: 0.10s; }
+.nav-overlay.open .nav-overlay-link:nth-child(3) { transition-delay: 0.15s; }
+.nav-overlay.open .nav-overlay-link:nth-child(4) { transition-delay: 0.20s; }
+.nav-overlay.open .nav-overlay-link:nth-child(5) { transition-delay: 0.25s; }
+
+.nav-overlay-link:hover {
+  color: var(--color-grey-hi);
+}
+
+/* ── Mobile breakpoint ────────────────────────────────────── */
+@media (max-width: 767px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+}

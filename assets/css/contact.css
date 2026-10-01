@@ -1,0 +1,217 @@
+/* =========================================================
+   contact.css — Syrus Portfolio
+   Contact section with info column and floating-label form
+   ========================================================= */
+
+/* ── Section wrapper ──────────────────────────────────────── */
+#contact {
+  padding: var(--section-padding) max(var(--frame-inset), 2rem);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ── Two-column grid ──────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* ── Contact info items ───────────────────────────────────── */
+.contact-info-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.contact-info-icon {
+  font-size: 1.2rem;
+  color: var(--color-grey-mid);
+  flex-shrink: 0;
+  width: 24px;
+  line-height: 1;
+  padding-top: 2px;
+}
+
+.contact-info-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--color-grey-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.contact-info-value {
+  color: var(--color-grey-hi);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.contact-info-value a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.contact-info-value a:hover {
+  color: var(--color-white);
+}
+
+/* ── Contact form ─────────────────────────────────────────── */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Form group (field + floating label) ──────────────────── */
+.form-group {
+  position: relative;
+}
+
+/* ── Text inputs and textarea ─────────────────────────────── */
+.form-input,
+.form-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-grey-lo);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 1.5rem 0 0.5rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+  resize: none;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Hide placeholder text (we use floating labels instead) */
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: transparent;
+}
+
+/* Input focus state */
+.form-input:focus,
+.form-textarea:focus {
+  border-bottom-color: var(--color-white);
+}
+
+/* Validation error state */
+.form-input.error,
+.form-textarea.error {
+  border-bottom-color: #ff4444;
+}
+
+/* ── Floating label ───────────────────────────────────────── */
+.form-label {
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  color: var(--color-grey-mid);
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition:
+    top var(--transition-fast),
+    font-size var(--transition-fast),
+    color var(--transition-fast),
+    letter-spacing var(--transition-fast),
+    font-family var(--transition-fast);
+}
+
+/* Label floats up when input is focused or has content */
+.form-input:focus ~ .form-label,
+.form-input:not(:placeholder-shown) ~ .form-label,
+.form-textarea:focus ~ .form-label,
+.form-textarea:not(:placeholder-shown) ~ .form-label {
+  top: 0;
+  font-size: 0.7rem;
+  color: var(--color-grey-mid);
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Inline validation error message ──────────────────────── */
+.form-error {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #ff4444;
+  position: absolute;
+  bottom: -1.2rem;
+  left: 0;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.form-error.visible {
+  opacity: 1;
+}
+
+/* ── Submit button ────────────────────────────────────────── */
+.btn-submit {
+  align-self: flex-start;
+  background: var(--color-white);
+  color: var(--color-bg);
+  border: 1px solid var(--color-white);
+  padding: 0.75rem 2.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-submit:hover {
+  background: transparent;
+  color: var(--color-white);
+}
+
+.btn-submit.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ── Submission status messages ───────────────────────────── */
+.form-status {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  min-height: 1.5rem;
+}
+
+.form-status.success {
+  color: #4caf50;
+}
+
+.form-status.error {
+  color: #ff4444;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .btn-submit {
+    align-self: stretch;
+    justify-content: center;
+  }
+}

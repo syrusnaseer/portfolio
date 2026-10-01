@@ -1,0 +1,130 @@
+/* =========================================================
+   about.css — Syrus Portfolio
+   About section: two-column layout with education timeline
+   ========================================================= */
+
+/* ── Section wrapper ──────────────────────────────────────── */
+#about {
+  padding: var(--section-padding) max(var(--frame-inset), 2rem);
+}
+
+/* ── Two-column grid ──────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ── Body copy ────────────────────────────────────────────── */
+.about-text p {
+  color: var(--color-grey-hi);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Quick facts list ─────────────────────────────────────── */
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.about-list li {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-grey-mid);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about-list li::before {
+  content: '///';
+  color: var(--color-grey-lo);
+  flex-shrink: 0;
+}
+
+/* ── Education timeline ───────────────────────────────────── */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+/* Vertical line — GSAP animates scaleY from 0 → 1 on scroll */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-border);
+  transform-origin: top;
+}
+
+/* Helper div target for GSAP (pseudo-elements aren't directly animatable) */
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-border);
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+/* ── Timeline entry ───────────────────────────────────────── */
+.timeline-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+
+/* Dot on the line */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0.35rem;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--color-grey-mid);
+  border-radius: 50%;
+  background: var(--color-bg);
+  transform: translateX(-3.5px);
+}
+
+/* ── Timeline metadata ────────────────────────────────────── */
+.timeline-year {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--color-grey-mid);
+  letter-spacing: 0.1em;
+  display: block;
+}
+
+.timeline-school {
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0.25rem 0;
+  font-size: 1rem;
+}
+
+.timeline-degree {
+  color: var(--color-grey-hi);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}

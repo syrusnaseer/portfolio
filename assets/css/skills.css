@@ -1,0 +1,88 @@
+/* =========================================================
+   skills.css — Syrus Portfolio
+   Skills section with labelled chip rows
+   ========================================================= */
+
+/* ── Section wrapper ──────────────────────────────────────── */
+#skills {
+  padding: var(--section-padding) max(var(--frame-inset), 2rem);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ── Inner max-width container ────────────────────────────── */
+.skills-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ── Section heading area ─────────────────────────────────── */
+.skills-header {
+  margin-bottom: 3rem;
+}
+
+/* ── A single category row ────────────────────────────────── */
+.skill-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ── Left-hand category label ─────────────────────────────── */
+.skill-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--color-grey-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  min-width: 120px;
+  flex-shrink: 0;
+  padding-top: 0.35rem;
+}
+
+/* ── Chip container ───────────────────────────────────────── */
+.skills-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ── Individual chip ──────────────────────────────────────── */
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-grey-hi);
+  border: 1px solid var(--color-border);
+  padding: 0.35rem 0.75rem;
+  background: transparent;
+  cursor: default;
+  display: inline-block;
+  transition:
+    background var(--transition-med),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.chip:hover {
+  background: var(--color-white);
+  color: var(--color-bg);
+  border-color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .skill-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .skill-label {
+    min-width: auto;
+    padding-top: 0;
+  }
+}

@@ -1,0 +1,90 @@
+/* =========================================================
+   reset.css — Syrus Portfolio
+   Full CSS reset: normalised baseline for all browsers
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Disable native smooth scroll — Lenis takes over */
+html {
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* Block-level media */
+img,
+video,
+canvas,
+svg,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove link underlines */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove default button / input appearance */
+button,
+input,
+select,
+textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Reset focus outline — re-added in base.css via :focus-visible */
+:focus {
+  outline: none;
+}
+
+/* Remove default fieldset styles */
+fieldset {
+  border: 0;
+  padding: 0;
+}
+
+/* Make sure table cells collapse properly */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Remove default spacing from quotes */
+blockquote,
+q {
+  quotes: none;
+}
+
+/* Font smoothing */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

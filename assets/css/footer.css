@@ -1,0 +1,116 @@
+/* =========================================================
+   footer.css — Syrus Portfolio
+   Site footer and fixed back-to-top button
+   ========================================================= */
+
+/* ── Footer section ───────────────────────────────────────── */
+#footer {
+  padding: 2rem max(var(--frame-inset), 2rem);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ── Inner layout row ─────────────────────────────────────── */
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ── Footer logo ──────────────────────────────────────────── */
+.footer-logo {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--color-white);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+/* ── Copyright notice ─────────────────────────────────────── */
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--color-grey-mid);
+}
+
+/* ── Social icon links ────────────────────────────────────── */
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social-link {
+  color: var(--color-grey-mid);
+  text-decoration: none;
+  font-size: 1.1rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.footer-social-link:hover {
+  color: var(--color-white);
+  border-color: var(--color-grey-hi);
+}
+
+/* ── Back to top button ───────────────────────────────────── */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  color: var(--color-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 1.2rem;
+  z-index: 900;
+  transition:
+    opacity var(--transition-med),
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  background: var(--color-white);
+  color: var(--color-bg);
+  border-color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .back-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
