@@ -10,9 +10,9 @@
  *   4. Go to Account → API Keys → copy the Public Key
  *   Replace the three constants below:
  */
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID  = 'service_yydi08l';
+const EMAILJS_TEMPLATE_ID = 'template_2s47scr';
+const EMAILJS_PUBLIC_KEY  = 'Pkunc_d_FpJ61U4awBuA0';
 
 export function initContact() {
   if (typeof emailjs === 'undefined') {
