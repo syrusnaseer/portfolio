@@ -1,20 +1,21 @@
 /* =========================================================
    hero.css — Syrus Portfolio
-   Full-viewport hero section with canvas background
+   Silver Surfer theme — deep black, silver/chrome accents
+   Two-column hero: photo left, text right
    ========================================================= */
 
 /* ── Section container ────────────────────────────────────── */
 #hero {
   position: relative;
-  height: 100dvh;
-  min-height: 600px;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding-top: var(--nav-height);
 }
 
-/* ── Three.js canvas ──────────────────────────────────────── */
+/* ── Three.js canvas (falling stars) ─────────────────────── */
 #hero-canvas {
   position: absolute;
   inset: 0;
@@ -24,13 +25,142 @@
   pointer-events: none;
 }
 
-/* ── Content wrapper ──────────────────────────────────────── */
+/* ── Two-column hero content wrapper ──────────────────────── */
 .hero-content {
   position: relative;
   z-index: 1;
-  text-align: center;
-  max-width: 900px;
-  padding: 0 clamp(1rem, 4vw, 3rem);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+  gap: clamp(3rem, 6vw, 6rem);
+}
+
+/* ── Photo column ─────────────────────────────────────────── */
+.hero-photo-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Outer wrapper that holds rings + image */
+.hero-photo-wrap {
+  position: relative;
+  width: clamp(240px, 28vw, 360px);
+  height: clamp(280px, 34vw, 440px);
+}
+
+/* The actual photo */
+.hero-photo {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  /* Slight silver desaturate tint */
+  filter: grayscale(20%) contrast(1.05) brightness(0.95);
+  border: 1px solid rgba(180, 180, 200, 0.15);
+}
+
+/* Fallback when no photo uploaded yet */
+.hero-photo[src="assets/photo.jpg"]:not([complete]) {
+  background: var(--color-bg-soft);
+}
+
+/* ── Animated corner brackets ────────────────────────────── */
+.hero-photo-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 3;
+  border-color: rgba(200, 200, 220, 0.7);
+  border-style: solid;
+}
+
+.hero-photo-corner--tl {
+  top: -6px; left: -6px;
+  border-width: 2px 0 0 2px;
+  animation: corner-pulse 3s ease-in-out infinite;
+}
+.hero-photo-corner--tr {
+  top: -6px; right: -6px;
+  border-width: 2px 2px 0 0;
+  animation: corner-pulse 3s ease-in-out infinite 0.75s;
+}
+.hero-photo-corner--bl {
+  bottom: -6px; left: -6px;
+  border-width: 0 0 2px 2px;
+  animation: corner-pulse 3s ease-in-out infinite 1.5s;
+}
+.hero-photo-corner--br {
+  bottom: -6px; right: -6px;
+  border-width: 0 2px 2px 0;
+  animation: corner-pulse 3s ease-in-out infinite 2.25s;
+}
+
+@keyframes corner-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1);    }
+  50%       { opacity: 1;   transform: scale(1.15); }
+}
+
+/* ── Orbiting ring 1 — slow outer spin ───────────────────── */
+.hero-photo-ring {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-photo-ring--1 {
+  inset: -28px;
+  border-width: 1px;
+  border-color: rgba(160, 160, 180, 0.18) rgba(160, 160, 180, 0.06) rgba(160, 160, 180, 0.18) rgba(160, 160, 180, 0.06);
+  animation: ring-spin-cw 12s linear infinite;
+}
+
+/* ── Ring 2 — medium counter-clockwise ───────────────────── */
+.hero-photo-ring--2 {
+  inset: -52px;
+  border-width: 1px;
+  border-color: rgba(130, 130, 160, 0.12) transparent rgba(130, 130, 160, 0.12) transparent;
+  animation: ring-spin-ccw 18s linear infinite;
+}
+
+/* ── Ring 3 — large slow glow pulse ──────────────────────── */
+.hero-photo-ring--3 {
+  inset: -80px;
+  border-width: 1px;
+  border-color: rgba(100, 100, 140, 0.07);
+  animation: ring-glow 6s ease-in-out infinite;
+}
+
+@keyframes ring-spin-cw {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes ring-spin-ccw {
+  from { transform: rotate(0deg);    }
+  to   { transform: rotate(-360deg); }
+}
+
+@keyframes ring-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1);    }
+  50%       { opacity: 0.8; transform: scale(1.03); }
+}
+
+/* ── Text column ──────────────────────────────────────────── */
+.hero-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 /* ── Availability badge ───────────────────────────────────── */
@@ -38,7 +168,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(180, 180, 200, 0.2);
   padding: 0.35rem 0.9rem;
   border-radius: 100px;
   font-family: var(--font-mono);
@@ -47,20 +177,21 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1.5rem;
+  background: rgba(255,255,255,0.02);
 }
 
-/* Green availability dot — only colour exception */
 .hero-badge-dot {
   width: 6px;
   height: 6px;
-  background: #4caf50;
+  background: #aaaacc;
   border-radius: 50%;
   flex-shrink: 0;
   animation: badge-pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(170,170,200,0.6);
 }
 
 @keyframes badge-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
+  0%, 100% { opacity: 1; transform: scale(1);   }
   50%       { opacity: 0.5; transform: scale(0.8); }
 }
 
@@ -70,10 +201,10 @@
   font-weight: 500;
   font-size: 1.1rem;
   color: var(--color-grey-hi);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
-/* ── Hero name (display type, GSAP clip-path reveal) ──────── */
+/* ── Hero name ────────────────────────────────────────────── */
 .hero-name {
   font-family: var(--font-display);
   font-size: var(--text-display);
@@ -84,21 +215,18 @@
   text-transform: uppercase;
   margin-bottom: 0.75rem;
   overflow: hidden;
-  opacity: 0.92;
 }
 
-/* Inner span that GSAP targets with clip-path — no default hide so name shows without JS */
 .hero-name-inner {
   display: block;
-  /* clip-path managed by GSAP — no default hide */
 }
 
-/* ── Typewriter element ───────────────────────────────────── */
+/* ── Typewriter ───────────────────────────────────────────── */
 .hero-typewriter {
   font-family: var(--font-mono);
-  font-size: clamp(0.9rem, 2.5vw, 1.25rem);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   color: var(--color-grey-hi);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   min-height: 2em;
 }
 
@@ -106,25 +234,23 @@
   color: var(--color-white);
 }
 
-/* ── Short bio ────────────────────────────────────────────── */
+/* ── Bio ──────────────────────────────────────────────────── */
 .hero-bio {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--color-grey-mid);
-  max-width: 560px;
-  margin: 0 auto 2rem;
-  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 0 2rem;
+  line-height: 1.75;
 }
 
-/* ── CTA button row ───────────────────────────────────────── */
+/* ── CTA buttons ──────────────────────────────────────────── */
 .hero-cta {
   display: flex;
   gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 2rem;
 }
 
-/* ── Primary button ───────────────────────────────────────── */
 .btn-primary {
   position: relative;
   overflow: hidden;
@@ -137,37 +263,39 @@
   font-size: 0.9rem;
   cursor: pointer;
   transition: background var(--transition-fast), color var(--transition-fast);
+  text-decoration: none;
+  display: inline-block;
 }
-
 .btn-primary:hover {
   background: transparent;
   color: var(--color-white);
 }
 
-/* ── Secondary button ─────────────────────────────────────── */
 .btn-secondary {
   background: transparent;
-  border: 1px solid var(--color-white);
+  border: 1px solid rgba(200, 200, 220, 0.4);
   color: var(--color-white);
   padding: 0.75rem 2rem;
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  text-decoration: none;
+  display: inline-block;
 }
-
 .btn-secondary:hover {
   background: var(--color-white);
   color: var(--color-bg);
+  border-color: var(--color-white);
 }
 
-/* ── Social links row ─────────────────────────────────────── */
+/* ── Social links ─────────────────────────────────────────── */
 .hero-social {
   display: flex;
   gap: 1.5rem;
-  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .hero-social a {
@@ -177,7 +305,6 @@
   font-size: 0.8rem;
   text-decoration: none;
 }
-
 .hero-social a:hover {
   color: var(--color-white);
 }
@@ -190,29 +317,12 @@
   color: var(--color-grey-mid);
   line-height: 1.6;
   pointer-events: none;
+  z-index: 2;
 }
-
-.hero-meta-tl {
-  top: calc(var(--nav-height) + 1.5rem);
-  left: calc(var(--frame-inset) + 1.5rem);
-}
-
-.hero-meta-tr {
-  top: calc(var(--nav-height) + 1.5rem);
-  right: calc(var(--frame-inset) + 1.5rem);
-  text-align: right;
-}
-
-.hero-meta-bl {
-  bottom: 3.5rem;
-  left: calc(var(--frame-inset) + 1.5rem);
-}
-
-.hero-meta-br {
-  bottom: 3.5rem;
-  right: calc(var(--frame-inset) + 1.5rem);
-  text-align: right;
-}
+.hero-meta-tl { top: calc(var(--nav-height) + 1.5rem); left: calc(var(--frame-inset) + 1.5rem); }
+.hero-meta-tr { top: calc(var(--nav-height) + 1.5rem); right: calc(var(--frame-inset) + 1.5rem); text-align: right; }
+.hero-meta-bl { bottom: 3.5rem; left: calc(var(--frame-inset) + 1.5rem); }
+.hero-meta-br { bottom: 3.5rem; right: calc(var(--frame-inset) + 1.5rem); text-align: right; }
 
 /* ── Scroll hint ──────────────────────────────────────────── */
 .scroll-hint {
@@ -230,12 +340,9 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   pointer-events: none;
+  z-index: 2;
 }
-
-.scroll-hint-arrow {
-  animation: scroll-bounce 1.5s ease-in-out infinite;
-  font-size: 1rem;
-}
+.scroll-hint-arrow { animation: scroll-bounce 1.5s ease-in-out infinite; }
 
 @keyframes scroll-bounce {
   0%, 100% { transform: translateY(0); }
@@ -243,19 +350,32 @@
 }
 
 /* ── Responsive ───────────────────────────────────────────── */
-@media (max-width: 767px) {
-  .hero-meta-tr,
-  .hero-meta-bl,
-  .hero-meta-br {
-    display: none;
+@media (max-width: 900px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
   }
-
-  .hero-cta {
-    flex-direction: column;
+  .hero-text-col {
     align-items: center;
   }
-
-  .hero-meta-tl {
-    font-size: 0.65rem;
+  .hero-bio {
+    margin: 0 auto 2rem;
   }
+  .hero-cta {
+    justify-content: center;
+  }
+  .hero-social {
+    justify-content: center;
+  }
+  .hero-photo-wrap {
+    width: clamp(180px, 50vw, 260px);
+    height: clamp(220px, 60vw, 320px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-meta-tr,
+  .hero-meta-bl,
+  .hero-meta-br { display: none; }
 }

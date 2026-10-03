@@ -5,16 +5,16 @@
 
 :root {
   /* ── Colour palette ────────────────────────────────────── */
-  --color-bg:       #080808;
-  --color-bg-soft:  #111111;
-  --color-border:   #1f1f1f;
-  --color-white:    #f0f0f0;
-  --color-grey-hi:  #aaaaaa;
-  --color-grey-mid: #666666;
-  --color-grey-lo:  #2a2a2a;
+  --color-bg:       #020202;
+  --color-bg-soft:  #0a0a0a;
+  --color-border:   #1a1a1a;
+  --color-white:    #ececec;
+  --color-grey-hi:  #a8a8b8;
+  --color-grey-mid: #5a5a6a;
+  --color-grey-lo:  #222230;
   --color-accent:   #ffffff;
   --color-error:    #ff4444;
-  --color-success:  #4caf50;
+  --color-success:  #6cba7d;
 
   /* ── Typography — font families ───────────────────────── */
   --font-display: 'Bebas Neue', sans-serif;

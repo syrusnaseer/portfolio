@@ -23,43 +23,49 @@ export function initAnimations() {
 // ── 1. Hero entrance (runs immediately — no ScrollTrigger) ────────────────────
 
 function heroEntrance() {
-  // Name reveal — clip-path wipe from bottom
-  gsap.fromTo('.hero-name-inner',
-    { clipPath: 'inset(100% 0 0 0)' },
-    { clipPath: 'inset(0% 0 0 0)', duration: 1, ease: 'power4.out', delay: 0.2 }
+  // Photo slides in from left
+  gsap.fromTo('.hero-photo-col',
+    { x: -60, opacity: 0 },
+    { x: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
   );
 
-  // Subtitle, bio, cta, social stagger
-  gsap.from(
+  // Rings fade in after photo
+  gsap.fromTo('.hero-photo-ring',
+    { opacity: 0, scale: 0.8 },
+    { opacity: 1, scale: 1, duration: 1.2, stagger: 0.2, ease: 'power2.out', delay: 0.6 }
+  );
+
+  // Corners pop in
+  gsap.fromTo('.hero-photo-corner',
+    { opacity: 0, scale: 0.5 },
+    { opacity: 1, scale: 1, duration: 0.5, stagger: 0.1, ease: 'back.out(2)', delay: 1 }
+  );
+
+  // Badge fades in
+  gsap.fromTo('.hero-badge',
+    { opacity: 0, y: -10 },
+    { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 0.4 }
+  );
+
+  // Name wipe up
+  gsap.fromTo('.hero-name-inner',
+    { clipPath: 'inset(100% 0 0 0)' },
+    { clipPath: 'inset(0% 0 0 0)', duration: 1, ease: 'power4.out', delay: 0.5 }
+  );
+
+  // Text stack stagger
+  gsap.fromTo(
     ['.hero-greeting', '.hero-typewriter', '.hero-bio', '.hero-cta', '.hero-social'],
-    {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power2.out',
-      stagger: 0.12,
-      delay: 0.6,
-    }
+    { y: 25, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out', stagger: 0.1, delay: 0.7 }
   );
 
   // Corner metadata
-  gsap.from(
+  gsap.fromTo(
     ['.hero-meta-tl', '.hero-meta-tr', '.hero-meta-bl', '.hero-meta-br'],
-    {
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      delay: 0.4,
-    }
+    { opacity: 0 },
+    { opacity: 1, duration: 0.8, stagger: 0.1, delay: 0.5 }
   );
-
-  // Availability badge
-  gsap.from('.hero-badge', {
-    opacity: 0,
-    y: -10,
-    duration: 0.6,
-    delay: 0.1,
-  });
 }
 
 // ── 2. Stats ──────────────────────────────────────────────────────────────────
