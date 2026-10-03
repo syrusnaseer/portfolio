@@ -34,7 +34,7 @@
   margin: 0 auto;
   padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 0.8fr 1.4fr;
   align-items: center;
   gap: clamp(3rem, 6vw, 6rem);
 }
@@ -49,8 +49,8 @@
 /* Outer wrapper that holds rings + image */
 .hero-photo-wrap {
   position: relative;
-  width: clamp(240px, 28vw, 360px);
-  height: clamp(280px, 34vw, 440px);
+  width: clamp(180px, 20vw, 280px);
+  height: clamp(220px, 26vw, 340px);
 }
 
 /* The actual photo */
@@ -62,7 +62,6 @@
   object-fit: cover;
   object-position: top center;
   display: block;
-  /* Slight silver desaturate tint */
   filter: grayscale(20%) contrast(1.05) brightness(0.95);
   border: 1px solid rgba(180, 180, 200, 0.15);
 }

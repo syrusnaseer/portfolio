@@ -14,6 +14,7 @@ export function initAnimations() {
   statsAnimations();
   aboutAnimations();
   skillsAnimations();
+  experienceAnimations();
   projectsAnimations();
   contactAnimations();
   sectionHeadings();
@@ -161,6 +162,29 @@ function skillsAnimations() {
 }
 
 // ── 5. Projects ───────────────────────────────────────────────────────────────
+
+function experienceAnimations() {
+  gsap.fromTo('#experience .section-prefix',
+    { y: 30, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '#experience', start: 'top 80%' } }
+  );
+  gsap.fromTo('#experience .section-title',
+    { clipPath: 'inset(100% 0 0 0)', y: 20 },
+    { clipPath: 'inset(0% 0 0 0)', y: 0, duration: 0.9, ease: 'power4.out',
+      scrollTrigger: { trigger: '#experience', start: 'top 78%' } }
+  );
+  gsap.fromTo('.exp-card',
+    { opacity: 0, y: 50 },
+    { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out',
+      scrollTrigger: { trigger: '.experience-grid', start: 'top 82%' } }
+  );
+  gsap.fromTo('.exp-chip',
+    { opacity: 0, y: 8 },
+    { opacity: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out',
+      scrollTrigger: { trigger: '.exp-tech', start: 'top 88%' } }
+  );
+}
 
 function projectsAnimations() {
   // Section prefix
