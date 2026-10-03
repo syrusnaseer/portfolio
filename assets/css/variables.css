@@ -6,12 +6,12 @@
 :root {
   /* ── Colour palette ────────────────────────────────────── */
   --color-bg:       #020202;
-  --color-bg-soft:  #0a0a0a;
-  --color-border:   #1a1a1a;
+  --color-bg-soft:  #0c0c0e;
+  --color-border:   #242428;
   --color-white:    #ececec;
-  --color-grey-hi:  #a8a8b8;
-  --color-grey-mid: #5a5a6a;
-  --color-grey-lo:  #222230;
+  --color-grey-hi:  #c8c8d8;   /* raised: was #a8a8b8 — labels, subheadings */
+  --color-grey-mid: #9090a8;   /* raised: was #5a5a6a — body text, descriptions */
+  --color-grey-lo:  #2a2a35;
   --color-accent:   #ffffff;
   --color-error:    #ff4444;
   --color-success:  #6cba7d;
