@@ -15,12 +15,12 @@
   padding-top: var(--nav-height);
 }
 
-/* ── Three.js canvas (falling stars) ─────────────────────── */
+/* ── Three.js canvas (falling stars — fixed full page) ───── */
 #hero-canvas {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: 0;
   pointer-events: none;
 }
