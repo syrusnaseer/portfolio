@@ -76,12 +76,49 @@ function initForm() {
         submitBtn.innerHTML = submitBtn.dataset.label || 'Send Message';
       }
 
-      if (statusEl) {
-        statusEl.textContent = 'Something went wrong. Please email me directly.';
-        statusEl.className = 'form-status error';
-      }
+      // EmailJS isn't usable (invalid/missing public key) — fall back to
+      // opening the visitor's email client with the message pre-filled so the
+      // message still gets through. When a valid public key is added later,
+      // this branch is never reached and EmailJS sends silently.
+      openMailto(form, statusEl);
+
+      form.reset();
+      form.querySelectorAll('input, textarea').forEach((el) => el.classList.remove('filled'));
     }
   });
+}
+
+// ── mailto fallback (used when EmailJS is not configured) ─────────────────────
+
+function openMailto(form, statusEl) {
+  const get = (sel) => (form.querySelector(sel)?.value || '').trim();
+  const name    = get('[name="from_name"]');
+  const email   = get('[name="reply_to"]');
+  const subject = get('[name="subject"]') || 'Portfolio contact form';
+  const message = get('[name="message"]');
+
+  const body = [
+    (name ? name + ' (' + email + ')' : email) + ' sent you a message via your portfolio:',
+    '',
+    message,
+    '',
+    email ? '— Reply to: ' + email : '',
+  ].join('\n');
+
+  const mailto =
+    'mailto:Syrus7083@gmail.com' +
+    '?subject=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body);
+
+  if (statusEl) {
+    statusEl.textContent =
+      "Opening your email app with the message ready to send. If it didn't open, email me directly at Syrus7083@gmail.com";
+    statusEl.className = 'form-status success';
+  }
+
+  // Setting location to a mailto: URL hands off to the visitor's mail client
+  // without navigating the page away.
+  window.location.href = mailto;
 }
 
 // ── Validation ────────────────────────────────────────────────────────────────

@@ -206,11 +206,11 @@ function projectsAnimations() {
   );
 
   // Filter pills
-  gsap.fromTo('.filter-btn',
+  gsap.fromTo('.filter-pill',
     { opacity: 0, y: 10 },
     {
       opacity: 1, y: 0, duration: 0.4, stagger: 0.07, ease: 'power2.out',
-      scrollTrigger: { trigger: '.projects-filters', start: 'top 88%' },
+      scrollTrigger: { trigger: '.filter-bar', start: 'top 88%' },
     }
   );
 
