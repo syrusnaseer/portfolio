@@ -4,3 +4,6 @@ Thumbs.db
 .env
 .agents/
 node_modules/
+
+# Local backup of the full-res hero photo (the compressed assets/photo.jpg is what the site uses)
+assets/photo.original.jpg

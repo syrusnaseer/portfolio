@@ -62,6 +62,19 @@
   color: var(--color-white);
 }
 
+/* ── Download Resume CTA ──────────────────────────────────── */
+.contact-resume-cta {
+  margin-top: 1.5rem;
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .contact-resume-cta {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 /* ── Contact form ─────────────────────────────────────────── */
 .contact-form {
   display: flex;

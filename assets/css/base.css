@@ -48,9 +48,12 @@ body::after {
 }
 
 /* ── Skip navigation link ─────────────────────────────────── */
-/* ── All sections sit above the fixed canvas ─────────────── */
-header,
-main,
+/* ── Sections/footer sit above the fixed star canvas (z-index 0).
+   header/main are intentionally NOT given a z-index here: that would
+   create a low stacking context and trap the fixed nav (z-index 1000),
+   the mobile overlay (z-index 999) and the project modal (z-index 2000)
+   BELOW the page content. Leaving them in the root context lets those
+   fixed layers stack above the sections as intended. */
 section,
 footer {
   position: relative;

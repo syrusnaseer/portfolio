@@ -56,7 +56,7 @@ function initModal() {
   const overlay = document.getElementById('modal-overlay');
   if (!overlay) return;
 
-  const panel = overlay.querySelector('.modal');
+  const panel = overlay.querySelector('.modal-panel');
   const closeBtn = overlay.querySelector('.modal-close');
 
   if (!panel) return;

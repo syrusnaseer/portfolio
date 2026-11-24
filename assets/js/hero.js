@@ -34,23 +34,23 @@ export function initHero() {
     }));
 
     // Falling stars pool — more of them
-    fallingStars = Array.from({ length: 10 }, () => createFallingStar(true));
+    fallingStars = Array.from({ length: 14 }, () => createFallingStar(true));
   }
 
   // ── Create a falling star (vertical + slight diagonal) ────────────────────
   function createFallingStar(initial = false) {
     const angle = (Math.random() * 25 + 70) * (Math.PI / 180); // 70–95° = mostly straight down
-    const speed = Math.random() * 1.5 + 0.8;                   // SLOW: 0.8–2.3 px/frame
+    const speed = Math.random() * 2.0 + 1.5;                   // 1.5–3.5 px/frame — clearly visible fall
     return {
       x: Math.random() * W,
-      y: initial ? Math.random() * H : -30,
+      y: initial ? Math.random() * H : -40,
       vx: Math.cos(angle) * speed,
       vy: Math.sin(angle) * speed,
-      len: Math.random() * 160 + 80,           // longer tails
+      len: Math.random() * 140 + 120,          // 120–260 px long bright tails
       alpha: 0,
-      maxAlpha: Math.random() * 0.5 + 0.5,     // brighter: 0.5–1.0
+      maxAlpha: Math.random() * 0.3 + 0.7,     // 0.7–1.0 — bright
       fadeIn: true,
-      width: Math.random() * 1.5 + 0.6,        // thicker
+      width: Math.random() * 2.0 + 1.5,        // 1.5–3.5 px — clearly thick
       delay: initial
         ? Math.floor(Math.random() * 240)
         : Math.floor(Math.random() * 200 + 40),
@@ -85,12 +85,18 @@ export function initHero() {
       fs.x += fs.vx;
       fs.y += fs.vy;
 
-      // Fade in quickly, fade out slowly
+      // Fade in quickly, then HOLD full brightness; only fade out near the bottom edge
       if (fs.fadeIn) {
-        fs.alpha = Math.min(fs.alpha + 0.06, fs.maxAlpha);
+        fs.alpha = Math.min(fs.alpha + 0.08, fs.maxAlpha);
         if (fs.alpha >= fs.maxAlpha) fs.fadeIn = false;
       } else {
-        fs.alpha = Math.max(fs.alpha - 0.012, 0); // slow fade
+        const fadeZone = 80;
+        if (fs.y > H - fadeZone) {
+          const over = (fs.y - (H - fadeZone)) / fadeZone;     // 0 → 1+ approaching/leaving bottom
+          fs.alpha = Math.max(fs.maxAlpha * (1 - over), 0);
+        } else {
+          fs.alpha = fs.maxAlpha;                               // persistent bright streak mid-screen
+        }
       }
 
       if (fs.alpha > 0) {
@@ -124,8 +130,8 @@ export function initHero() {
         ctx.fill();
       }
 
-      // Recycle when off screen or fully faded
-      if (fs.y > H + 50 || fs.x > W + 50 || fs.alpha <= 0) {
+      // Recycle only after the star has left the viewport (full-height travel)
+      if (fs.y > H + 60 || fs.x > W + 60 || fs.x < -60) {
         fallingStars[i] = createFallingStar(false);
       }
     });

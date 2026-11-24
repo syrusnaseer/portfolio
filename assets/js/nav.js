@@ -17,6 +17,7 @@ export function initNav() {
   initBackToTop();
   initHamburger();
   initSmoothLinks();
+  initResumeDownload();
   initScrollSpy();
 }
 
@@ -152,6 +153,37 @@ function initSmoothLinks() {
         _lenis.scrollTo(target, { duration: 1.4, easing: easeInOutCubic });
       } else {
         target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+}
+
+// ── Resume download (force a real file download) ────────────────────────────
+
+function initResumeDownload() {
+  const links = document.querySelectorAll('[data-resume-download]');
+  if (!links.length) return;
+
+  links.forEach((link) => {
+    link.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      const filename = link.getAttribute('download') || 'Syrus_Naseer_Resume.pdf';
+      try {
+        const res = await fetch(href);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      } catch (err) {
+        console.warn('Resume blob download failed, falling back to direct open:', err);
+        window.open(href, '_blank');
       }
     });
   });
